@@ -18,6 +18,10 @@ abstract class AbstractSessionRepository
 
     public function get(): array
     {
+        if (empty($_SESSION[$this->tableName()])) {
+            $this->set([]);
+        }
+
         return json_decode($_SESSION[$this->tableName()], true);
     }
 
